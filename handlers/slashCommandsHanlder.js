@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 
+let guildId = 1331033722761248780;
+
 module.exports = async client => {
     let commands = [];
     client.commands.forEach(async command => {
@@ -18,6 +20,6 @@ module.exports = async client => {
         await commands.push(slashCommand)
     });
     const rest = new Discord.REST({version: '10'}).setToken(client.token);
-    await rest.put(Discord.Routes.applicationCommands(client.user.id), {body: commands});
+    await rest.put(Discord.Routes.applicationCommands(client.user.id, guildId), {body: commands});
     console.log('Slash commands loaded !');
 }

@@ -57,11 +57,18 @@ var row = new Discord.ActionRowBuilder().addComponents(
 )
 
 module.exports = {
-    name: 'drawoptions',
+    name: 'draw',
     description: 'Tire les cartes après avoir répondu à une question',
 
     async run(client, msg, args, author) {
         msg.channel.send({components: [row]});
-        msg.reply({content: 'Voilà pour toi !', ephemeral: true});
+        client.on('interactionCreate', async interaction => {
+            if (interaction.CustomId === 'drawOptions') {
+                msg.reply({content: 'Voilà pour toi !', ephemeral: true});
+            }
+        })
     }
 }
+
+        
+        // // msg.reply({content: 'Voilà pour toi !', ephemeral: true});
